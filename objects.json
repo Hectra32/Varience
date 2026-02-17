@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "shape": "rect",
+    "size": [200, 100],
+    "color": [80, 190, 110],
+    "inputs": 2,
+    "outputs": 1,
+    "locater": 0,
+    "name": "AND"
+  },
+
+  {
+    "id": 2,
+    "shape": "rect",
+    "size": [200, 100],
+    "color": [190, 120, 80],
+    "inputs": 2,
+    "outputs": 1,
+    "locater": 1,
+    "name": "OR"
+  },
+
+  {
+    "id": 3,
+    "shape": "rect",
+    "size": [200, 100],
+    "color": [120, 120, 190],
+    "inputs": 1,
+    "outputs": 1,
+    "locater": 2,
+    "name": "NOT"
+  },
+
+  {
+    "id": 4,
+    "shape": "rect",
+    "size": [200, 100],
+    "color": [190, 80, 80],
+    "inputs": 2,
+    "outputs": 1,
+    "locater": 3,
+    "name": "NAND"
+  },
+
+  {
+    "id": 5,
+    "shape": "rect",
+    "size": [200, 100],
+    "color": [150, 90, 200],
+    "inputs": 2,
+    "outputs": 1,
+    "locater": 4,
+    "name": "XOR"
+  },
+
+  {
+    "id": 6,
+    "shape": "rect",
+    "size": [200, 100],
+    "color": [90, 200, 200],
+    "inputs": 2,
+    "outputs": 1,
+    "locater": 5,
+    "name": "XNOR"
+  },
+
+  {
+    "id": 7,
+    "shape": "rect",
+    "size": [200, 100],
+    "color": [200, 200, 90],
+    "inputs": 2,
+    "outputs": 1,
+    "locater": 6,
+    "name": "NOR"
+  },
+  {
+  "name": "INPUT",
+  "locater": "INPUT",
+  "color": [200, 200, 0],
+  "size":[60,60],
+  "input_count": 0,
+  "output_count": 1,
+  "type": "source"
+  }
+]
