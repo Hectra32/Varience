@@ -7,10 +7,12 @@ on android then you will have to
 compile the "astar.c" and
 "logic_evaluater.c" to "*.so" for it to
 work, and if you run it in android then
- note in "main.py" you will have to load
- the library by ctypes which requires the complete file extension
+ note in "main.py" you will have to 
+load
+ the library by ctypes which requires 
+the complete file extension
  eg, "/storage/emulated/0/*.so
 
 GENERAL CONTEXT
-This is a simple logic simulator then (rn when I am writing this) contains 7 logic gates and node (as object like gates)
+This is a simple logic simulator that (rn when I am writing this) contains 7 logic gates and node (as object like gates)
 future version are supposed to have binary decoder, flip-flop and other nessaccrry objects or logic circuit.
