@@ -1,0 +1,5 @@
+HELLO!
+For context if you want to run this on android then you will have to compile the "astar.c" and "logic_evaluater.c" to "*.so" for it to work, and if you run it in android then note in "main.py" you will have to load the library by ctypes which requires the complete file extension eg, "/storage/emulated/0/*.so
+
+GENERAL CONTEXT
+This is a simple 
