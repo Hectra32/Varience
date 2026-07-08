@@ -1,0 +1,32 @@
+.START
+GATE:
+{
+	AND:
+	{
+		width = 100;
+		height = 50;
+		colour: {
+			r = 200;
+			g = 150;
+			b = 100;
+			a = 255;
+		}:
+		input = 2;
+		output = 1;
+	}:AND;
+
+	OR:
+	{
+		width = 100;
+		height = 50;
+		color: {
+			r = 100;
+			g = 200;
+			b = 150;
+			a = 255;
+		}:
+		input = 2;
+		output = 1;
+	}:OR;
+}:GATE;
+.END
