@@ -147,40 +147,44 @@ int parse(FILE *file, Game* game){
 		if(token.type == TOKEN_EOF)
 			break;
 
-	switch(token.type)
-	{
-		case 1:
-			printf("identifier =  %s\n",token.text);
-			break;
+		switch(token.type)
+		{
+			case 0:
+				printf("EOF");
+				break;
 
-		case 2:
-			printf("number = %d\n",token.number);
-			break;
+			case 1:
+				printf("%s\n",token.text);
+				break;
 
-		case 3:
-			printf("left brace\n");
-			break;
+			case 2:
+				printf("%d\n",token.number);
+				break;
 
-		case 4:
-			printf("right brace\n");
-			break;
+			case 3:
+				printf("left brace\n");
+				break;
 
-		case 5:
-			printf("dot\n");
-			break;
+			case 4:
+				printf("right brace\n");
+				break;
 
-		case 6:
-			printf("colon\n");
-			break;
+			case 5:
+				printf("dot\n");
+				break;
 
-		case 7:
-			printf("semicolon\n");
-			break;
+			case 6:
+				printf("colon\n");
+				break;
 
-		case 8:
-			printf("equal\n");
-			break;
-	}
+			case 7:
+				printf("semicolon\n");
+				break;
+
+			case 8:
+				printf("equal\n");
+				break;
+		}
 	}
 
 	return 0;
