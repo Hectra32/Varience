@@ -8,6 +8,8 @@
 
 typedef enum {AND, OR, NOT, NAND, NOR, XOR, XNOR} Object_Type;
 
+
+//==============================================================
 typedef enum {
 	TOKEN_EOF,
 
@@ -23,6 +25,8 @@ typedef enum {
 	TOKEN_EQUAL
 } TokenType;
 
+
+//================================================================
 typedef struct {
 	TokenType type;
 
@@ -31,6 +35,8 @@ typedef struct {
 	int number;
 } Token;
 
+
+//==================================================================
 typedef struct {
 	FILE *file;
 
@@ -41,7 +47,7 @@ typedef struct {
 	int coloum;
 } Lexer;
 
-
+//================================================================
 typedef struct{
 	int r;
 	int g;
@@ -49,6 +55,7 @@ typedef struct{
 	int a;
 }color;
 
+//=================================================================
 typedef struct {
 	Object_Type type;
 	int width;
@@ -58,6 +65,7 @@ typedef struct {
 	int output;
 } OBJ;
 
+//===================================================================
 void lexer_init(Lexer *lexer, FILE *file);
 
 Token lexer_next_token(Lexer *lexer);

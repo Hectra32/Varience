@@ -18,8 +18,8 @@ void lexer_init(Lexer *lexer, FILE *file){
 
 	lexer->current = fgetc(file);
 
-	lexer->line = 1;
-	lexer->coloum = 1;
+	lexer->line = 0;
+	lexer->coloum = 0;
 }
 
 static void lexer_next(Lexer *lexer)
@@ -147,12 +147,40 @@ int parse(FILE *file, Game* game){
 		if(token.type == TOKEN_EOF)
 			break;
 
-		printf("%d text %s value %d current %c\n",
-				token.type,
-				token.text,
-				token.number,
-				lexer.current
-				);
+	switch(token.type)
+	{
+		case 1:
+			printf("identifier =  %s\n",token.text);
+			break;
+
+		case 2:
+			printf("number = %d\n",token.number);
+			break;
+
+		case 3:
+			printf("left brace\n");
+			break;
+
+		case 4:
+			printf("right brace\n");
+			break;
+
+		case 5:
+			printf("dot\n");
+			break;
+
+		case 6:
+			printf("colon\n");
+			break;
+
+		case 7:
+			printf("semicolon\n");
+			break;
+
+		case 8:
+			printf("equal\n");
+			break;
+	}
 	}
 
 	return 0;
