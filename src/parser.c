@@ -133,6 +133,51 @@ Token lexer_next_token(Lexer *lexer){
 
 //================================= PARSER ==============================================
 
+void check(Token previous, Token current){
+
+	static int execpt = 0;
+	static int execpt_type = TOKEN_NULL;
+	static int write_in = 0;
+
+	static int section = 0;
+
+
+	switch(current.type)
+	{
+		case TOKEN_IDENTIFIER:
+			if(previous.type == TOKEN_DOT)
+			{
+				if(strcmp(current.text, "START") == 0)
+				{
+					section = 1;
+					printf("Valid File Section Started\n");
+				}
+				else if(strcmp(current.text, "END") == 0)
+				{
+					section = 0;
+					printf("File Section Ended\n");
+				}
+				else
+				{
+					printf("Invalid START or END Flag in File\n");
+				}
+			}
+
+			if(strcmp(current.text, "GATE") == 0)
+					{
+					printf("Id GATE Found Section After This will be Used in OBJ struct\n");
+					execpt = 1;
+					execpt_type = TOKEN_LBRACE;
+					}
+			break;
+
+		case TOKEN_LBRACE:
+			if(execpt == 1){
+				printf("expected lbrace\n");
+			}
+			break;
+	}
+}
 
 
 int parse(FILE *file, Game* game){
@@ -141,50 +186,17 @@ int parse(FILE *file, Game* game){
 
 	lexer_init(&lexer, file);
 
+	Token previous = {0};
+
 	while(1){
 		Token token = lexer_next_token(&lexer);
 
 		if(token.type == TOKEN_EOF)
 			break;
 
-		switch(token.type)
-		{
-			case 0:
-				printf("EOF");
-				break;
+		check(previous, token);
 
-			case 1:
-				printf("%s\n",token.text);
-				break;
-
-			case 2:
-				printf("%d\n",token.number);
-				break;
-
-			case 3:
-				printf("left brace\n");
-				break;
-
-			case 4:
-				printf("right brace\n");
-				break;
-
-			case 5:
-				printf("dot\n");
-				break;
-
-			case 6:
-				printf("colon\n");
-				break;
-
-			case 7:
-				printf("semicolon\n");
-				break;
-
-			case 8:
-				printf("equal\n");
-				break;
-		}
+		previous = token;
 	}
 
 	return 0;

@@ -22,8 +22,29 @@ typedef enum {
 	TOKEN_DOT,
 	TOKEN_COLON,
 	TOKEN_SEMICOLON,
-	TOKEN_EQUAL
+	TOKEN_EQUAL,
+	TOKEN_NULL,
+	TOKEN_UNKOWN
 } TokenType;
+
+typedef enum {
+	TYPE_START,
+	TYPE_END,
+
+	TYPE_BLOCK_START,
+	TYPE_BLOCK_END,
+
+	TYPE_WEGHT,
+	TYPE_HEIGHT,
+
+	TYPE_COLOR_R,
+	TYPE_COLOR_G,
+	TYPE_COLOR_B,
+	TYPE_COLOR_A,
+
+	TYPE_INPUT,
+	TYPE_OUTPUT
+} Type;
 
 
 //================================================================
