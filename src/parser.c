@@ -1,207 +1,101 @@
-/*
- * This file is divided into two parts
- * Lexer
- * and
- * Parser
-*/
-
-#include <stdio.h>
-
-#include "game.h"
 #include "parser.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-//================================= LEXER ===============================================
+#include <cjson/cJSON.h>
 
-void lexer_init(Lexer *lexer, FILE *file){
-	lexer->file = file;
-
-	lexer->current = fgetc(file);
-
-	lexer->line = 0;
-	lexer->coloum = 0;
-}
-
-static void lexer_next(Lexer *lexer)
+static char *read_file(const char *filename)
 {
-	if (lexer->current == '\n')
-	{
-		lexer->line++;
-		lexer->coloum = 1;
-	}
-	else
-	{
-		lexer->coloum++;
-	}
+	FILE *fp = fopen(filename, "rb");
 
-	lexer->current = fgetc(lexer->file);
+	if(fp == NULL)
+		return NULL;
+
+	fseek(fp, 0, SEEK_END);
+
+	long size = ftell(fp);
+
+	rewind(fp);
+
+	char *buffer = malloc(size + 1);
+
+	fread(buffer, 1, size, fp);
+
+	buffer[size] = '\0';
+
+	fclose(fp);
+
+	return buffer;
 }
 
-static void skip_whitespace(Lexer *lexer)
-{
-while (lexer->current == ' ' ||
-	lexer->current == '\t' ||
-	lexer->current == '\n' ||
-	lexer->current == '\r')
+GateData load_gate(const char *filename){
+	GateData db = {0};
+
+	char *text = read_file(filename);
+
+	if(text == NULL)
+		return db;
+
+	cJSON *root = cJSON_GetArraySize(root);
+
+	if(root == NULL)
 	{
-		lexer_next(lexer);
-	}
-}
-
-Token lexer_next_token(Lexer *lexer){
-	Token token = {0};
-
-	skip_whitespace(lexer);
-
-	if (lexer->current == EOF)
-	{
-		token.type = TOKEN_EOF;
-		return token;
+		free(text);
+		return db;
 	}
 
-	if (isalpha(lexer->current))
+	db.gate_count = cJSON_GetArraySize(root);
+
+	db.gates = malloc(sizeof(Gate) * db.gate_count);
+
+	for(int i = 0; i < db.gate_count; i++)
 	{
-		int i = 0;
+		cJSON *obj = cJSON_GetArrayItem(root, i);
+		
+		Gate *g = &db.gates[i];
+		
+		g->id = cJSON_GetObjectItem(obj, "id")->valueint;
+
+		strcpy(g->shape, cJSON_GetObjectItem(obj, "shape")->valuestring);
+		
+		strcpy(g->name, cJSON_GetObjectItem(obj, "name")->valuestring);
+
+		strcpy(g->type, cJSON_GetObjectItem(obj, "type")->valuestring);
+
+		g->inputs = cJSON_GetObjectItem(obj, "inputs")->valueint;
+
+		g->outputs = cJSON_GetObjectItem(obj, "outputs")->valueint;
+
+		g->locater = cJSON_GetObjectItem(obj, "locater")->valueint;
+
+		cJSON *size = cJSON_GetObjectItem(obj, "size");
+
+		g->size[0] = cJSON_GetArrayItem(size,0)->valueint;
+
+		g->size[1] = cJSON_GetArrayItem(size,1)->valueint;
+
+		cJSON *color = cJSON_GetObjectItem(obj,"color");
 	
-		while (isalnum(lexer->current) || lexer->current == '_')
-		{
-			token.text[i++] = lexer->current;
-			lexer_next(lexer);
-		}
-		token.text[i] = '\0';
-		token.type = TOKEN_IDENTIFIER;
-		return token;
-	}
+		g->color[0] = cJSON_GetArrayItem(color,0)->valueint;
+		
+		g->color[1] = cJSON_GetArrayItem(color,1)->valueint;
 
-	if (isdigit(lexer->current))
-	{
-		token.number = 0;
-
-		while (isdigit(lexer->current))
-		{
-			token.number *= 10;
-			token.number += lexer->current - '0';
-			lexer_next(lexer);
-		}
-		token.type = TOKEN_NUMBER;
-		return token;
-	}
-
-	switch (lexer->current)
-	{
-
-	case '.':
-		lexer_next(lexer);
-		token.type = TOKEN_DOT;
-		return token;
-
-	case '{':
-		lexer_next(lexer);
-		token.type = TOKEN_LBRACE;
-		return token;
-
-	case '}':
-		lexer_next(lexer);
-		token.type = TOKEN_RBRACE;
-		return token;
-
-	case ':':
-		lexer_next(lexer);
-		token.type = TOKEN_COLON;
-		return token;
-
-	case ';':
-		lexer_next(lexer);
-		token.type = TOKEN_SEMICOLON;
-		return token;
-
-	case '=':
-		lexer_next(lexer);
-		token.type = TOKEN_EQUAL;
-		return token;
-	}
-
-	printf("Unknown Characcter '%c'\n",lexer->current);
-	lexer_next(lexer);
-
-	token.type = TOKEN_EOF;
-
-	return token;
+		g->color[2] = cJSON_GetArrayItem(color,2)->valueint;
+    	}
 
 
+	cJSON_Delete(root);
+	free(text);
+
+	return db;
 }
 
-//================================= PARSER ==============================================
+void free_gates(GateDatabase *db)
+{
+	free(db->gates);
 
-void check(Token previous, Token current){
-
-	static int execpt = 0;
-	static int execpt_type = TOKEN_NULL;
-	static int write_in = 0;
-
-	static int section = 0;
-
-
-	switch(current.type)
-	{
-		case TOKEN_IDENTIFIER:
-			if(previous.type == TOKEN_DOT)
-			{
-				if(strcmp(current.text, "START") == 0)
-				{
-					section = 1;
-					printf("Valid File Section Started\n");
-				}
-				else if(strcmp(current.text, "END") == 0)
-				{
-					section = 0;
-					printf("File Section Ended\n");
-				}
-				else
-				{
-					printf("Invalid START or END Flag in File\n");
-				}
-			}
-
-			if(strcmp(current.text, "GATE") == 0)
-					{
-					printf("Id GATE Found Section After This will be Used in OBJ struct\n");
-					execpt = 1;
-					execpt_type = TOKEN_LBRACE;
-					}
-			break;
-
-		case TOKEN_LBRACE:
-			if(execpt == 1){
-				printf("expected lbrace\n");
-			}
-			break;
-	}
-}
-
-
-int parse(FILE *file, Game* game){
-
-	Lexer lexer;
-
-	lexer_init(&lexer, file);
-
-	Token previous = {0};
-
-	while(1){
-		Token token = lexer_next_token(&lexer);
-
-		if(token.type == TOKEN_EOF)
-			break;
-
-		check(previous, token);
-
-		previous = token;
-	}
-
-	return 0;
-}
-
-void get_info(OBJ* obj){
-
+	db->gates = NULL;
+	db->gate_count = 0;
 }

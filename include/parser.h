@@ -1,98 +1,34 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include <stdio.h>
-
-#include "game.h"
-
-
-typedef enum {AND, OR, NOT, NAND, NOR, XOR, XNOR} Object_Type;
-
-
-//==============================================================
-typedef enum {
-	TOKEN_EOF,
-
-	TOKEN_IDENTIFIER,
-	TOKEN_NUMBER,
-
-	TOKEN_LBRACE,
-	TOKEN_RBRACE,
-
-	TOKEN_DOT,
-	TOKEN_COLON,
-	TOKEN_SEMICOLON,
-	TOKEN_EQUAL,
-	TOKEN_NULL,
-	TOKEN_UNKOWN
-} TokenType;
-
-typedef enum {
-	TYPE_START,
-	TYPE_END,
-
-	TYPE_BLOCK_START,
-	TYPE_BLOCK_END,
-
-	TYPE_WEGHT,
-	TYPE_HEIGHT,
-
-	TYPE_COLOR_R,
-	TYPE_COLOR_G,
-	TYPE_COLOR_B,
-	TYPE_COLOR_A,
-
-	TYPE_INPUT,
-	TYPE_OUTPUT
-} Type;
-
-
-//================================================================
-typedef struct {
-	TokenType type;
-
-	char text[64];
-
-	int number;
-} Token;
-
-
-//==================================================================
-typedef struct {
-	FILE *file;
-
-	int current;
-
-	int line;
-
-	int coloum;
-} Lexer;
-
-//================================================================
 typedef struct{
-	int r;
-	int g;
-	int b;
-	int a;
-}color;
+	int id;
+	char name[32];
+	char shape[16];
 
-//=================================================================
-typedef struct {
-	Object_Type type;
 	int width;
 	int height;
-	color color;
-	int input;
-	int output;
-} OBJ;
 
-//===================================================================
-void lexer_init(Lexer *lexer, FILE *file);
+	int color[4];
 
-Token lexer_next_token(Lexer *lexer);
+	int inputs;
+	int outputs;
+}GateDef;
 
-int parse(FILE *file, Game* game);
+typedef struct {
+	Gate *gate;
+	int gate_count;
+} GateData;
 
-void get_info(OBJ* obj);
+typedef struct {
+	GateDef *def;
+
+	int x;
+	int y;
+
+	int input_state[8];
+	int output_state[8];
+}GateInstance;
+
 
 #endif

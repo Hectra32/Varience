@@ -1,0 +1,85 @@
+[
+	{
+	"id": 1,
+	"shape": "rect",
+	"size": [200, 100],
+	"color": [80, 190, 110],
+	"inputs": 2,
+	"outputs": 1,
+	"locater": 0,
+	"name": "AND",
+	"type": "gate"
+	},
+
+	{
+    	"id": 2,
+    	"shape": "rect",
+    	"size": [200, 100],
+    	"color": [190, 120, 80],
+    	"inputs": 2,
+    	"outputs": 1,
+    	"locater": 1,
+    	"name": "OR",
+	"type": "gate"
+	},
+
+	{
+    	"id": 3,
+    	"shape": "rect",
+    	"size": [200, 100],
+    	"color": [120, 120, 190],
+    	"inputs": 1,
+    	"outputs": 1,
+    	"locater": 2,
+    	"name": "NOT",
+    	"type": "gate"
+  	},	
+
+  	{
+    	"id": 4,
+    	"shape": "rect",
+    	"size": [200, 100],
+    	"color": [190, 80, 80],
+    	"inputs": 2,
+    	"outputs": 1,
+    	"locater": 3,
+    	"name": "NAND",
+    	"type": "gate"
+  	},
+
+  	{
+    	"id": 5,
+    	"shape": "rect",
+    	"size": [200, 100],
+    	"color": [150, 90, 200],
+    	"inputs": 2,
+    	"outputs": 1,
+    	"locater": 4,
+    	"name": "XOR",
+    	"type": "gate"
+  	},
+
+  	{
+  	"id": 6,
+    	"shape": "rect",
+    	"size": [200, 100],
+    	"color": [90, 200, 200],
+    	"inputs": 2,
+    	"outputs": 1,
+    	"locater": 5,
+    	"name": "XNOR",
+    	"type": "gate"
+  	},
+
+  	{
+	"id": 7,
+    	"shape": "rect",
+    	"size": [200, 100],
+    	"color": [200, 200, 90],
+    	"inputs": 2,
+    	"outputs": 1,
+    	"locater": 6,
+    	"name": "NOR",
+    	"type": "gate"
+  	}
+]

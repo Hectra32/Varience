@@ -17,19 +17,6 @@ int main(){
 	display_size(&weight,&height);
 
 	Game game;
-
-	FILE *file = fopen("files/objects.rie","r");
-
-	if(file == NULL){
-		printf("Failed to open file");
-		perror("error: ");
-		return 1;
-	}
-
-	parse(file, &game);
-
-	fclose(file);
-
 // Window and Renderer creation
 	game.window =
 		SDL_CreateWindow(
