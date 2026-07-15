@@ -7,7 +7,7 @@
 #include "draw.h"
 #include "game.h"
 #include "panel.h"
-#include "parser.h"
+#include "object.h"
 
 
 int main(){
@@ -61,6 +61,10 @@ int main(){
 // Panel setup
 	panel_init(&game);
 // --
+
+//
+
+	add_object(AND);
 
 
 	game.running = 1;

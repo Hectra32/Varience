@@ -28,6 +28,5 @@ typedef struct Game{
 
 #endif
 
-
-// shared state for varience
-// v_0.00 independent
+// "why do we use comments"
+// - Shunutu
