@@ -1,20 +1,28 @@
 #include "game.h"
 #include "defination.h"
 #include "object.h"
+#include "fetch.h"
 
 #include <SDL2/SDL.h>
+#include <stdio.h>
 
 
 int local_num = 0;
 
 void add_object(GATES type){
 
+	printf("Add object type %d\n",type);
+
 	Gate_Ins *obj = &gate_ins[local_num];
+
+	int sp_x, sp_y;
+	spawn_pos(local_num, &sp_x, &sp_y);
 
 	obj->gate = &gate[type];
 	obj->local_number = local_num + 1;
-	obj->x = 1000;
-	obj->y = 1000;
+	obj->x = sp_x;
+	obj->y = sp_y;
+	printf("drawn object at x: %d, y: %d\n", sp_x, sp_y);
 
 	local_num++;
 }

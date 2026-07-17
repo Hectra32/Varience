@@ -3,4 +3,6 @@
 
 void display_size(int* width, int* height);
 
+void spawn_pos(int number, int* w, int* y);
+
 #endif

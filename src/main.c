@@ -69,6 +69,7 @@ int main(){
 	DEFINATION_INIT();
 
 	add_object(AND);
+	add_object(OR);
 
 
 	game.running = 1;
