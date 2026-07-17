@@ -10,8 +10,6 @@ Gate_Ins gate_ins[GATES];
 
 void DEFINATION_INIT(void){
 
-	printf("Defination init called");
-
 	for(int i = 0; i < GATES; i++){
 		if(i == AND){
 			strcpy(gate[i].NAME, "AND");

@@ -69,7 +69,6 @@ int main(){
 	DEFINATION_INIT();
 
 	add_object(AND);
-	printf("add object called");
 
 
 	game.running = 1;
