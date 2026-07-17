@@ -1,6 +1,7 @@
 #include "defination.h"
 
 #include <string.h>
+#include <stdio.h>
 
 #define GATES 3
 
@@ -8,6 +9,8 @@ Gate gate[GATES];
 Gate_Ins gate_ins[GATES];
 
 void DEFINATION_INIT(void){
+
+	printf("Defination init called");
 
 	for(int i = 0; i < GATES; i++){
 		if(i == AND){
@@ -17,9 +20,9 @@ void DEFINATION_INIT(void){
 			gate[i].width = 200;
 			gate[i].height = 100;
 
-			gate[i].color[0] = 255;
-			gate[i].color[1] = 255;
-			gate[i].color[2] = 255;
+			gate[i].color[0] = 80;
+			gate[i].color[1] = 190;
+			gate[i].color[2] = 110;
 			gate[i].color[3] = 255;
 
 			gate[i].input = 2;

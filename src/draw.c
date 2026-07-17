@@ -1,5 +1,6 @@
 #include "draw.h"
 #include "game.h"
+#include "object.h"
 
 #include <SDL2/SDL.h>
 
@@ -68,6 +69,7 @@ void draw(Game* game){
 	}
 
 	panel_draw(game);
+	draw_object(game);
 
 
 	SDL_RenderPresent(game->renderer);

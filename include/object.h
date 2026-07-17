@@ -7,6 +7,7 @@
 typedef struct Game Game;
 
 
-void add_object(Game* game);
+void add_object(GATES type);
+void draw_object(Game* game);
 
 #endif

@@ -8,6 +8,7 @@
 #include "game.h"
 #include "panel.h"
 #include "object.h"
+#include "defination.h"
 
 
 int main(){
@@ -63,8 +64,12 @@ int main(){
 // --
 
 //
+//
+	
+	DEFINATION_INIT();
 
 	add_object(AND);
+	printf("add object called");
 
 
 	game.running = 1;
