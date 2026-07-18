@@ -3,10 +3,11 @@
 #include <string.h>
 #include <stdio.h>
 
+
 #define GATES 3
 
-Gate gate[GATES];
-Gate_Ins gate_ins[GATES];
+Gate gate[GATES]; // Change this if u add more gates :)
+Gate_Ins gate_ins[32]; // Max Gates change for more gates :)
 
 void DEFINATION_INIT(void){
 
@@ -15,8 +16,8 @@ void DEFINATION_INIT(void){
 			strcpy(gate[i].NAME, "AND");
 			gate[i].id = AND;
 
-			gate[i].width = 200;
-			gate[i].height = 100;
+			gate[i].width = 100;
+			gate[i].height = 50;
 
 			gate[i].color[0] = 80;
 			gate[i].color[1] = 190;
@@ -31,12 +32,12 @@ void DEFINATION_INIT(void){
 			strcpy(gate[i].NAME, "OR");
 			gate[i].id = OR;
 
-			gate[i].width = 200;
-			gate[i].height = 100;
+			gate[i].width = 100;
+			gate[i].height = 50;
 
-			gate[i].color[0] = 255;
-			gate[i].color[1] = 255;
-			gate[i].color[2] = 255;
+			gate[i].color[0] = 190;
+			gate[i].color[1] = 120;
+			gate[i].color[2] = 80;
 			gate[i].color[3] = 255;
 
 			gate[i].input = 2;
@@ -47,12 +48,12 @@ void DEFINATION_INIT(void){
 			strcpy(gate[i].NAME, "NOT");
 			gate[i].id = NOT;
 
-			gate[i].width = 200;
-			gate[i].height = 100;
+			gate[i].width = 100;
+			gate[i].height = 50;
 
-			gate[i].color[0] = 255;
-			gate[i].color[1] = 255;
-			gate[i].color[2] = 255;
+			gate[i].color[0] = 120;
+			gate[i].color[1] = 120;
+			gate[i].color[2] = 190;
 			gate[i].color[3] = 255;
 
 			gate[i].input = 1;

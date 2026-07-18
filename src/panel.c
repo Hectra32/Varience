@@ -1,6 +1,8 @@
 #include "game.h"
 #include "panel.h"
 #include "fetch.h"
+#include "object.h"
+#include "defination.h"
 
 #include <stdio.h>
 
@@ -29,6 +31,13 @@ void panel_toggle(Game* game){
 		game->panel.open = 0;}
 }
 
+
+
+// Panel Update function
+
+
+
+
 void panel_update(Game* game){
 	if(game->panel.open){
 		if(game->panel.x < game->panel.target_x){
@@ -45,7 +54,87 @@ void panel_update(Game* game){
 			}
 		}
 	}
+
+
+	if((game->mouse_x >= game->panel.x + 100) &&
+	   (game->mouse_x <= game->panel.x + 100 + 100) &&
+	   (game->mouse_y >= game->panel.y + 50) &&
+	   (game->mouse_y <= game->panel.y + 50 + 50) &&
+	   (game->mouse_left_one_f))
+	{
+		add_object(AND);
+	}
+
+	else if((game->mouse_x >= game->panel.x + 300) &&
+	  (game->mouse_x <= game->panel.x + 300 + 100) &&
+	  (game->mouse_y >= game->panel.y + 50) &&
+	  (game->mouse_y <= game->panel.y + 50 + 50) &&
+	  (game->mouse_left_one_f))
+	{
+		add_object(OR);
+	}
+
+	else if((game->mouse_x >= game->panel.x + 500) &&
+	  (game->mouse_x <= game->panel.x + 500 + 100) &&
+	  (game->mouse_y >= game->panel.y + 50) &&
+	  (game->mouse_y <= game->panel.y + 50 + 50) &&
+	  (game->mouse_left_one_f))
+	{
+		add_object(NOT);
+	}
 }
+
+
+
+
+
+
+void draw_panel_object(Game* game){
+
+	for(int i = 0; i < 3; i++){ // change i < 3 if u add more gat
+		if(gate[i].id == AND){
+			SDL_Rect object = {
+				game->panel.x + 100,
+				game->panel.y + 50,
+				gate[i].width,
+				gate[i].height
+			};
+			SDL_SetRenderDrawColor(game->renderer, gate[i].color[0], gate[i].color[1], gate[i].color[2], gate[i].color[3]);
+			SDL_RenderFillRect(game->renderer, &object);
+		}
+
+		else if(gate[i].id == OR){
+			SDL_Rect object = {
+				game->panel.x + 300,
+				game->panel.y + 50,
+				gate[i].width,
+				gate[i].height
+			};
+			SDL_SetRenderDrawColor(game->renderer, gate[i].color[0], gate[i].color[1], gate[i].color[2], gate[i].color[3]);
+			SDL_RenderFillRect(game->renderer, &object);
+		}
+
+
+		else if(gate[i].id == NOT){
+			SDL_Rect object = {
+				game->panel.x + 500,
+				game->panel.y + 50,
+				gate[i].width,
+				gate[i].height
+			};
+			SDL_SetRenderDrawColor(game->renderer, gate[i].color[0], gate[i].color[1], gate[i].color[2], gate[i].color[3]);
+			SDL_RenderFillRect(game->renderer, &object);
+		}
+	}
+}
+
+
+
+
+
+
+// Panel Draw function
+
 
 void panel_draw(Game* game){
 	
@@ -58,4 +147,6 @@ void panel_draw(Game* game){
 
 	SDL_SetRenderDrawColor(game->renderer, 50,50,50,255);
 	SDL_RenderFillRect(game->renderer, &panel);
+
+	draw_panel_object(game);
 }

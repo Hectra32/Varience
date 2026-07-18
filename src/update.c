@@ -41,4 +41,6 @@ void update(Game* game){
 	}
 
 	game->button[0].x = game->panel.x + game->panel.w + 30;
+
+	panel_update(game);
 }

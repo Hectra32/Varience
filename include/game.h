@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+
 #include "button.h"
 #include <panel.h>
 
@@ -10,6 +12,7 @@
 typedef struct Game{
     SDL_Window* window;
     SDL_Renderer* renderer;
+    TTF_Font* font;
 
     int running;
 

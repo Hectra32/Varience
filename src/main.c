@@ -12,7 +12,12 @@
 
 
 int main(){
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_EVERYTHING);
+	if (TTF_Init() == -1)
+{
+    printf("TTF_Init failed: %s\n", TTF_GetError());
+    return 1;
+}
 
 	int weight, height;
 	display_size(&weight,&height);
@@ -35,6 +40,14 @@ int main(){
 			-1,
 			0
 		);
+
+	game.font = TTF_OpenFont("files/font/Inter.ttf", 24);
+	if(game.font == NULL){
+		printf("TTF ERROR: %s\n",TTF_GetError());
+		return 1;
+	}
+
+
 // UI deffinition
 	game.button[0] = (Button){
 		1,// id
@@ -67,9 +80,6 @@ int main(){
 //
 	
 	DEFINATION_INIT();
-
-	add_object(AND);
-	add_object(OR);
 
 
 	game.running = 1;

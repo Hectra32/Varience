@@ -28,6 +28,6 @@ void spawn_pos(int number, int* x, int* y)
 	int base_x = width/2;
 	int base_y = height/2;
 
-	*x = base_x + (20 * number);
-	*y = base_y + (20 * number);	
+	*x = base_x + (10 * number);
+	*y = base_y + (10 * number);	
 }

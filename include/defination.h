@@ -29,7 +29,7 @@ typedef struct {
 }Gate_Ins;
 
 extern Gate gate[3];
-extern Gate_Ins gate_ins[3];
+extern Gate_Ins gate_ins[32];
 extern int local_num;
 
 void DEFINATION_INIT(void);
