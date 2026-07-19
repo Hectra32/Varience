@@ -5,7 +5,8 @@
 #include <SDL2/SDL_ttf.h>
 
 #include "button.h"
-#include <panel.h>
+#include "panel.h"
+#include "defination.h"
 
 #define max_button 2
 
@@ -22,6 +23,11 @@ typedef struct Game{
     int mouse_right;
     int mouse_left_prev;
     int mouse_left_one_f;
+    
+    int dragging;
+    Gate_Ins *selected;
+    int drag_offset_x;
+    int drag_offset_y;
 
     Button button[max_button];
     Panel panel;

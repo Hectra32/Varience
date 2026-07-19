@@ -22,7 +22,7 @@ int main(){
 	int weight, height;
 	display_size(&weight,&height);
 
-	Game game;
+	Game game = {0};
 // Window and Renderer creation
 	game.window =
 		SDL_CreateWindow(

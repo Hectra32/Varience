@@ -1,10 +1,11 @@
 #ifndef DEFINATION_H
 #define DEFINATION_H
 
+#define MAX_GATES 128
 
 // GATE atruct
 
-typedef enum {AND, OR, NOT} GATES;
+typedef enum {AND, OR, NOT, NAND, NOR, XOR, XNOR} GATES;
 
 typedef struct {
 	char NAME[16];
@@ -24,12 +25,12 @@ typedef struct {
 	int number;
 	int local_number;
 
-	int x;
-	int y;
+	unsigned int x;
+	unsigned int y;
 }Gate_Ins;
 
-extern Gate gate[3];
-extern Gate_Ins gate_ins[32];
+extern Gate gate[7];
+extern Gate_Ins gate_ins[MAX_GATES];
 extern int local_num;
 
 void DEFINATION_INIT(void);

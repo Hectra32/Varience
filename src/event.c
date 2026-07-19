@@ -37,6 +37,7 @@ void events(Game* game){
 				switch(event.button.button){
 					case SDL_BUTTON_LEFT:
 						game->mouse_left = 0;
+						game->dragging = 0;
 						break;
 
 					case SDL_BUTTON_RIGHT:

@@ -82,6 +82,42 @@ void panel_update(Game* game){
 	{
 		add_object(NOT);
 	}
+
+	else if((game->mouse_x >= game->panel.x + 100) &&
+	 (game->mouse_x <= game->panel.x + 100 + 100) &&
+	 (game->mouse_y >= game->panel.y + 150) &&
+	 (game->mouse_y <= game->panel.y + 150 + 50) &&
+	 (game->mouse_left_one_f))
+	{
+		add_object(NAND);
+	}
+
+	else if((game->mouse_x >= game->panel.x + 300) &&
+	 (game->mouse_x <= game->panel.x + 300 + 100) &&
+	 (game->mouse_y >= game->panel.y + 150) &&
+	 (game->mouse_y <= game->panel.y + 150 + 50) &&
+	 (game->mouse_left_one_f))
+	{
+		add_object(NOR);
+	}
+
+	else if((game->mouse_x >= game->panel.x + 500) &&
+	 (game->mouse_x <= game->panel.x + 500 + 100) &&
+	 (game->mouse_y >= game->panel.y + 150) &&
+	 (game->mouse_y <= game->panel.y + 150 + 50) &&
+	 (game->mouse_left_one_f))
+	{
+		add_object(XOR);
+	}
+
+	else if((game->mouse_x >= game->panel.x + 100) &&
+	 (game->mouse_x <= game->panel.x + 100 + 100) &&
+	 (game->mouse_y >= game->panel.y + 250) &&
+	 (game->mouse_y <= game->panel.y + 250 + 50) &&
+	 (game->mouse_left_one_f))
+	{
+		add_object(XNOR);
+	}
 }
 
 
@@ -91,40 +127,27 @@ void panel_update(Game* game){
 
 void draw_panel_object(Game* game){
 
-	for(int i = 0; i < 3; i++){ // change i < 3 if u add more gat
-		if(gate[i].id == AND){
-			SDL_Rect object = {
-				game->panel.x + 100,
-				game->panel.y + 50,
-				gate[i].width,
-				gate[i].height
-			};
-			SDL_SetRenderDrawColor(game->renderer, gate[i].color[0], gate[i].color[1], gate[i].color[2], gate[i].color[3]);
-			SDL_RenderFillRect(game->renderer, &object);
-		}
+	for(int i = 0; i < 7; i++){ // change i < 3 if u add more gate
+			
+		int row = gate[i].id / 3;
+		int col = gate[i].id % 3;
 
-		else if(gate[i].id == OR){
-			SDL_Rect object = {
-				game->panel.x + 300,
-				game->panel.y + 50,
-				gate[i].width,
-				gate[i].height
-			};
-			SDL_SetRenderDrawColor(game->renderer, gate[i].color[0], gate[i].color[1], gate[i].color[2], gate[i].color[3]);
-			SDL_RenderFillRect(game->renderer, &object);
-		}
+		SDL_Rect object = {
+			game->panel.x + 100 + col * 200,
+			game->panel.y + 50 + row * 100,
+			gate[i].width,
+			gate[i].height
+		};
 
+		SDL_SetRenderDrawColor(	
+			game->renderer,
+			gate[i].color[0],
+			gate[i].color[1],
+			gate[i].color[2],
+			gate[i].color[3]
+		);
 
-		else if(gate[i].id == NOT){
-			SDL_Rect object = {
-				game->panel.x + 500,
-				game->panel.y + 50,
-				gate[i].width,
-				gate[i].height
-			};
-			SDL_SetRenderDrawColor(game->renderer, gate[i].color[0], gate[i].color[1], gate[i].color[2], gate[i].color[3]);
-			SDL_RenderFillRect(game->renderer, &object);
-		}
+		SDL_RenderFillRect(game->renderer, &object);
 	}
 }
 
@@ -145,7 +168,7 @@ void panel_draw(Game* game){
 		game->panel.h
 	};
 
-	SDL_SetRenderDrawColor(game->renderer, 50,50,50,255);
+	SDL_SetRenderDrawColor(game->renderer, 60,60,60,255);
 	SDL_RenderFillRect(game->renderer, &panel);
 
 	draw_panel_object(game);

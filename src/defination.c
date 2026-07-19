@@ -4,10 +4,10 @@
 #include <stdio.h>
 
 
-#define GATES 3
+#define GATES 7
 
 Gate gate[GATES]; // Change this if u add more gates :)
-Gate_Ins gate_ins[32]; // Max Gates change for more gates :)
+Gate_Ins gate_ins[MAX_GATES];
 
 void DEFINATION_INIT(void){
 
@@ -59,8 +59,71 @@ void DEFINATION_INIT(void){
 			gate[i].input = 1;
 			gate[i].output = 1;
 		}
-		
 
+		else if(i == NAND){
+			strcpy(gate[i].NAME, "NAND");
+			gate[i].id = NAND;
+
+			gate[i].width = 100;
+			gate[i].height = 50;
+
+			gate[i].color[0] = 190;
+			gate[i].color[1] = 80;
+			gate[i].color[2] = 80;
+			gate[i].color[3] = 255;
+
+			gate[i].input = 2;
+			gate[i].output = 1;
+		}
+
+		else if(i == NOR){
+			strcpy(gate[i].NAME, "NOR");
+			gate[i].id = NOR;
+
+			gate[i].width = 100;
+			gate[i].height = 50;
+
+			gate[i].color[0] = 200;
+			gate[i].color[1] = 200;
+			gate[i].color[2] = 90;
+			gate[i].color[3] = 255;
+
+			gate[i].input = 2;
+			gate[i].output = 1;
+		}
+
+		else if(i == XOR){
+			strcpy(gate[i].NAME, "XOR");
+			gate[i].id = XOR;
+
+			gate[i].width = 100;
+			gate[i].height = 50;
+
+			gate[i].color[0] = 150;
+			gate[i].color[1] = 90;
+			gate[i].color[2] = 200;
+			gate[i].color[3] = 255;
+
+			gate[i].input = 2;
+			gate[i].output = 1;
+		}
+
+		else if(i == XNOR){
+			strcpy(gate[i].NAME, "XNOR");
+			gate[i].id = XNOR;
+
+			gate[i].width = 100;
+			gate[i].height = 50;
+
+			gate[i].color[0] = 90;
+			gate[i].color[1] = 200;
+			gate[i].color[2] = 200;
+			gate[i].color[3] = 255;
+
+			gate[i].input = 2;
+			gate[i].output = 1;
+		}
+		
 		gate_ins[i].gate = &gate[i];
 		gate_ins[i].number = i+1;
 		gate_ins[i].local_number = 0;

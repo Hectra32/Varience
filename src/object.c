@@ -25,6 +25,35 @@ void add_object(GATES type){
 	local_num++;
 }
 
+void object_update(Game* game){
+	
+
+	for(int i = 0; i < local_num; i++){
+		Gate_Ins *obj = &gate_ins[i];
+
+		if(game->mouse_x > obj->x &&
+		   game->mouse_x < obj->x + 100 &&
+		   game->mouse_y > obj->y &&
+		   game->mouse_y < obj->y + 50 &&
+		   game->mouse_left_one_f &&
+		   ! game->dragging)
+		{
+			printf("OBJECT %d SELECTED\n",local_num);
+
+			game->dragging = 1;
+			game->selected = obj;
+
+			game->drag_offset_x = game->mouse_x - obj->x;
+			game->drag_offset_y = game->mouse_y - obj->y;
+		}
+	}
+
+	if(game->dragging && game->selected != NULL){
+		game->selected->x = game->mouse_x - game->drag_offset_x;
+		game->selected->y = game->mouse_y - game->drag_offset_y;
+	}
+}
+
 void draw_object(Game* game){
 
 	for(int i = 0; i < local_num; i++){
@@ -41,24 +70,52 @@ void draw_object(Game* game){
 		SDL_SetRenderDrawColor(game->renderer, obj->gate->color[0], obj->gate->color[1], obj->gate->color[2], obj->gate->color[3]);
 		SDL_RenderFillRect(game->renderer, &object);
 
-		if(obj->gate->id == AND){
-			draw_text(game->renderer, game->font,
-					"AND", obj->x, obj->y,
+		switch(obj->gate->id){
+			case AND:
+				draw_text(game->renderer, game->font,
+					obj->gate->NAME, obj->x, obj->y,
 					(SDL_Color){255,255,255,255});
-		}
+				break;
+		
 
-		else if(obj->gate->id == OR){
-			draw_text(game->renderer, game->font,
-					"OR", obj->x, obj->y,
-					(SDL_Color){255,255,255,255});
-		}
+			case OR:
+				draw_text(game->renderer, game->font,
+						obj->gate->NAME, obj->x, obj->y,
+						(SDL_Color){255,255,255,255});
+				break;
 
-		else if(obj->gate->id == NOT){
-			draw_text(game->renderer, game->font,
-					"NOT", obj->x, obj->y,
-					(SDL_Color){255,255,255,255});
-		}
+			case NOT:
+				draw_text(game->renderer, game->font,
+						obj->gate->NAME, obj->x, obj->y,
+						(SDL_Color){255,255,255,255});
+				break;
 
+			case NAND:
+				draw_text(game->renderer, game->font,
+						obj->gate->NAME, obj->x, obj->y,
+						(SDL_Color){255,255,255,255});
+				break;
+
+			case NOR:
+				draw_text(game->renderer, game->font,
+						obj->gate->NAME, obj->x, obj->y,
+						(SDL_Color){255,255,255,255});
+				break;
+
+			case XOR:
+				draw_text(game->renderer, game->font,
+						obj->gate->NAME, obj->x, obj->y,
+						(SDL_Color){255,255,255,255});
+				break;
+
+			case XNOR:
+				draw_text(game->renderer, game->font,
+						obj->gate->NAME, obj->x, obj->y,
+						(SDL_Color){255,255,255,255});
+				break;
+
+
+		}
 	}
 }
 

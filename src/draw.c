@@ -40,7 +40,7 @@ void DrawFilledCircle(SDL_Renderer* renderer, int cx, int cy, int r) {
 
 void draw(Game* game){
 
-	SDL_SetRenderDrawColor(game->renderer, 24,24,24,255);
+	SDL_SetRenderDrawColor(game->renderer, 22,22,22,255);
 	SDL_RenderClear(game->renderer);
 
 	SDL_SetRenderDrawColor(game->renderer, 255,255,255,255);
