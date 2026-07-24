@@ -30,7 +30,7 @@ typedef struct {
 }Gate_Ins;
 
 extern Gate gate[7];
-extern Gate_Ins gate_ins[MAX_GATES];
+extern Gate_Ins *gate_ins[MAX_GATES];
 extern int local_num;
 
 void DEFINATION_INIT(void);

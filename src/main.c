@@ -6,6 +6,7 @@
 #include "update.h"
 #include "draw.h"
 #include "game.h"
+#include "button.h"
 #include "panel.h"
 #include "object.h"
 #include "defination.h"
@@ -92,9 +93,9 @@ int main(){
 		update(&game);
 		draw(&game);
 
-		game.mouse_left_one_f = 0;
+		fps();
 
-		SDL_Delay(10);
+		game.mouse_left_one_f = 0;
 	}
 
 // Clean up

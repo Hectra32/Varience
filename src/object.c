@@ -3,16 +3,24 @@
 #include "object.h"
 #include "fetch.h"
 #include "text.h"
+#include "node.h"
 
 #include <SDL2/SDL.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 
 int local_num = 0;
 
 void add_object(GATES type){
 
-	Gate_Ins *obj = &gate_ins[local_num];
+	if(local_num >= MAX_GATES)
+		return;
+
+	Gate_Ins *obj = malloc(sizeof(Gate_Ins));
+
+	if(obj == NULL)
+		return;
 
 	int sp_x, sp_y;
 	spawn_pos(local_num, &sp_x, &sp_y);
@@ -22,6 +30,8 @@ void add_object(GATES type){
 	obj->x = sp_x - 50;
 	obj->y = sp_y - 25;
 
+	gate_ins[local_num] = obj;
+
 	local_num++;
 }
 
@@ -29,7 +39,7 @@ void object_update(Game* game){
 	
 
 	for(int i = 0; i < local_num; i++){
-		Gate_Ins *obj = &gate_ins[i];
+		Gate_Ins *obj = gate_ins[i];
 
 		if(game->mouse_x > obj->x &&
 		   game->mouse_x < obj->x + 100 &&
@@ -38,8 +48,6 @@ void object_update(Game* game){
 		   game->mouse_left_one_f &&
 		   ! game->dragging)
 		{
-			printf("OBJECT %d SELECTED\n",local_num);
-
 			game->dragging = 1;
 			game->selected = obj;
 
@@ -48,16 +56,28 @@ void object_update(Game* game){
 		}
 	}
 
-	if(game->dragging && game->selected != NULL){
+	if(game->dragging && game->selected){
 		game->selected->x = game->mouse_x - game->drag_offset_x;
 		game->selected->y = game->mouse_y - game->drag_offset_y;
+	}
+}
+
+void object_delete(Game* game){
+	for(int i = 0; i < local_num; i++){
+	
+		Gate_Ins *obj = gate_ins[i];
+		Button *b = &game->button[i];
+
+		if(b->type == DELETE_MODE && b->type_mode == 1 && game->selected == obj){
+			free(obj);
+		}
 	}
 }
 
 void draw_object(Game* game){
 
 	for(int i = 0; i < local_num; i++){
-		Gate_Ins *obj = &gate_ins[i];
+		Gate_Ins *obj = gate_ins[i];
 
 		SDL_Rect object =
 		{
@@ -116,6 +136,8 @@ void draw_object(Game* game){
 
 
 		}
+
+		draw_node(game);
 	}
 }
 

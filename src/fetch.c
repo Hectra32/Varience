@@ -31,3 +31,22 @@ void spawn_pos(int number, int* x, int* y)
 	*x = base_x + (10 * number);
 	*y = base_y + (10 * number);	
 }
+
+
+Uint64 lastTime = 0;
+int frames = 0;
+void fps(void)
+{
+	Uint64 now = SDL_GetTicks64();
+
+	frames++;
+
+	if (now - lastTime >= 1000)
+	{
+		printf("\rFPS: %d", frames);
+		fflush(stdout);
+
+		frames = 0;
+		lastTime = now;
+    }
+}

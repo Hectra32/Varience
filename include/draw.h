@@ -5,4 +5,6 @@
 
 void draw(Game* game);
 
+void DrawFilledCircle(SDL_Renderer* renderer, int cx, int cy, int r);
+
 #endif

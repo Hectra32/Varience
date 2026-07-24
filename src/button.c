@@ -3,6 +3,7 @@
 
 #include "game.h"
 #include "button.h"
+#include "object.h"
 
 
 void button_action(Game* game, int id){

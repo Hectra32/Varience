@@ -7,7 +7,7 @@
 #define GATES 7
 
 Gate gate[GATES]; // Change this if u add more gates :)
-Gate_Ins gate_ins[MAX_GATES];
+Gate_Ins *gate_ins[MAX_GATES];
 
 void DEFINATION_INIT(void){
 
@@ -124,11 +124,9 @@ void DEFINATION_INIT(void){
 			gate[i].output = 1;
 		}
 		
-		gate_ins[i].gate = &gate[i];
-		gate_ins[i].number = i+1;
-		gate_ins[i].local_number = 0;
-		gate_ins[i].x = 0;
-		gate_ins[i].y = 0;
+		for(int v = 0; v < MAX_GATES; v++){
+			gate_ins[v] = NULL;
+		}
 	}
 }
 

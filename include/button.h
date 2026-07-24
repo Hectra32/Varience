@@ -30,4 +30,6 @@ typedef struct{
 	int type_mode;
 } Button;
 
+void button_action(Game* game, int id);
+
 #endif
