@@ -43,7 +43,7 @@ void fps(void)
 
 	if (now - lastTime >= 1000)
 	{
-		printf("\rFPS: %d", frames);
+		printf("\r%d: FPS: %d", now, frames);
 		fflush(stdout);
 
 		frames = 0;
