@@ -2,3 +2,6 @@
 game
 out
 comp
+
+# .o files
+src/*.o
