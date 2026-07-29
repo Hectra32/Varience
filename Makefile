@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -Iinclude -g -I/usr/include/SDL2 -D_REENTRANT
+CFLAGS = -Iinclude -g -D_REENTRANT
 LIBS = -lSDL2 -lSDL2_ttf
 
 SRC = $(wildcard src/*.c)
