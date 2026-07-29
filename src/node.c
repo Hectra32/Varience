@@ -2,12 +2,8 @@
 
 #include "defination.h"
 #include "draw.h"
+#include "fetch.h"
 #include "object.h"
-
-void divide(int length, int section, int pos[]) {
-  for (int i = 0; i < section; i++)
-    pos[i] = ((i + 1) * length) / (section + 1);
-}
 
 void draw_node(Game *game) {
   for (int i = 0; i < local_num; i++) {

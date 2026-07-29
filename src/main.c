@@ -68,7 +68,7 @@ int main() {
     update(&game);
     draw(&game);
 
-    fps();
+    //    fps();  --- Uncomment This Line for cmdline FPS output ---
 
     game.mouse_left_one_f = 0;
   }
