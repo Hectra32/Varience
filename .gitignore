@@ -3,3 +3,6 @@ out
 
 # .o files
 src/*.o
+
+# Other files
+.clangd

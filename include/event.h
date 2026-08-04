@@ -3,8 +3,6 @@
 
 #include "game.h"
 
-#include <SDL2/SDL.h>
-
-void events(Game* game);
+void events(Game *game);
 
 #endif

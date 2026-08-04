@@ -43,5 +43,10 @@ void fps(void) {
 
 void divide(int length, int section, int pos[]) {
   for (int i = 0; i < section; i++)
+    pos[i] = (i * length) / section;
+}
+
+void divide_gap(int length, int section, int pos[]) {
+  for (int i = 0; i < section; i++)
     pos[i] = ((i + 1) * length) / (section + 1);
 }

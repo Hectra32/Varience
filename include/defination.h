@@ -5,29 +5,33 @@
 
 // GATE atruct
 
-typedef enum {AND, OR, NOT, NAND, NOR, XOR, XNOR} GATES;
+typedef enum GATES { AND, OR, NOT, NAND, NOR, XOR, XNOR } GATES;
+
+#include "node.h"
 
 typedef struct {
-	char NAME[16];
-	GATES id;
+  char NAME[16];
+  GATES id;
 
-	int width;
-	int height;
+  int width;
+  int height;
 
-	int color[4];
+  int color[4];
 
-	int input;
-	int output;
+  int input;
+  int output;
+
+  Nodes_Group group;
 } Gate;
 
 typedef struct {
-	Gate *gate;
-	int number;
-	int local_number;
+  Gate *gate;
+  int number;
+  int local_number;
 
-	unsigned int x;
-	unsigned int y;
-}Gate_Ins;
+  unsigned int x;
+  unsigned int y;
+} Gate_Ins;
 
 extern Gate gate[7];
 extern Gate_Ins *gate_ins[MAX_GATES];

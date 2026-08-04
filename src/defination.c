@@ -1,137 +1,136 @@
 #include "defination.h"
 
-#include <string.h>
 #include <stdio.h>
-
+#include <string.h>
 
 #define GATES 7
 
 Gate gate[GATES]; // Change this if u add more gates :)
 Gate_Ins *gate_ins[MAX_GATES];
 
-void DEFINATION_INIT(void){
+void DEFINATION_INIT(void) {
 
-	for(int i = 0; i < GATES; i++){
-		if(i == AND){
-			strcpy(gate[i].NAME, "AND");
-			gate[i].id = AND;
+  for (int i = 0; i < GATES; i++) {
+    if (i == AND) {
+      strcpy(gate[i].NAME, "AND");
+      gate[i].id = AND;
 
-			gate[i].width = 100;
-			gate[i].height = 50;
+      gate[i].width = 100;
+      gate[i].height = 50;
 
-			gate[i].color[0] = 80;
-			gate[i].color[1] = 190;
-			gate[i].color[2] = 110;
-			gate[i].color[3] = 255;
+      gate[i].color[0] = 80;
+      gate[i].color[1] = 190;
+      gate[i].color[2] = 110;
+      gate[i].color[3] = 255;
 
-			gate[i].input = 2;
-			gate[i].output = 1;
-		}
-		
-		else if(i == OR){
-			strcpy(gate[i].NAME, "OR");
-			gate[i].id = OR;
+      gate[i].input = 2;
+      gate[i].output = 1;
+    }
 
-			gate[i].width = 100;
-			gate[i].height = 50;
+    else if (i == OR) {
+      strcpy(gate[i].NAME, "OR");
+      gate[i].id = OR;
 
-			gate[i].color[0] = 190;
-			gate[i].color[1] = 120;
-			gate[i].color[2] = 80;
-			gate[i].color[3] = 255;
+      gate[i].width = 100;
+      gate[i].height = 50;
 
-			gate[i].input = 2;
-			gate[i].output = 1;
-		}
+      gate[i].color[0] = 190;
+      gate[i].color[1] = 120;
+      gate[i].color[2] = 80;
+      gate[i].color[3] = 255;
 
-		else if(i == NOT){
-			strcpy(gate[i].NAME, "NOT");
-			gate[i].id = NOT;
+      gate[i].input = 2;
+      gate[i].output = 1;
+    }
 
-			gate[i].width = 100;
-			gate[i].height = 50;
+    else if (i == NOT) {
+      strcpy(gate[i].NAME, "NOT");
+      gate[i].id = NOT;
 
-			gate[i].color[0] = 120;
-			gate[i].color[1] = 120;
-			gate[i].color[2] = 190;
-			gate[i].color[3] = 255;
+      gate[i].width = 100;
+      gate[i].height = 50;
 
-			gate[i].input = 1;
-			gate[i].output = 1;
-		}
+      gate[i].color[0] = 120;
+      gate[i].color[1] = 120;
+      gate[i].color[2] = 190;
+      gate[i].color[3] = 255;
 
-		else if(i == NAND){
-			strcpy(gate[i].NAME, "NAND");
-			gate[i].id = NAND;
+      gate[i].input = 1;
+      gate[i].output = 1;
+    }
 
-			gate[i].width = 100;
-			gate[i].height = 50;
+    else if (i == NAND) {
+      strcpy(gate[i].NAME, "NAND");
+      gate[i].id = NAND;
 
-			gate[i].color[0] = 190;
-			gate[i].color[1] = 80;
-			gate[i].color[2] = 80;
-			gate[i].color[3] = 255;
+      gate[i].width = 100;
+      gate[i].height = 50;
 
-			gate[i].input = 2;
-			gate[i].output = 1;
-		}
+      gate[i].color[0] = 190;
+      gate[i].color[1] = 80;
+      gate[i].color[2] = 80;
+      gate[i].color[3] = 255;
 
-		else if(i == NOR){
-			strcpy(gate[i].NAME, "NOR");
-			gate[i].id = NOR;
+      gate[i].input = 2;
+      gate[i].output = 1;
+    }
 
-			gate[i].width = 100;
-			gate[i].height = 50;
+    else if (i == NOR) {
+      strcpy(gate[i].NAME, "NOR");
+      gate[i].id = NOR;
 
-			gate[i].color[0] = 200;
-			gate[i].color[1] = 200;
-			gate[i].color[2] = 90;
-			gate[i].color[3] = 255;
+      gate[i].width = 100;
+      gate[i].height = 50;
 
-			gate[i].input = 2;
-			gate[i].output = 1;
-		}
+      gate[i].color[0] = 200;
+      gate[i].color[1] = 200;
+      gate[i].color[2] = 90;
+      gate[i].color[3] = 255;
 
-		else if(i == XOR){
-			strcpy(gate[i].NAME, "XOR");
-			gate[i].id = XOR;
+      gate[i].input = 2;
+      gate[i].output = 1;
+    }
 
-			gate[i].width = 100;
-			gate[i].height = 50;
+    else if (i == XOR) {
+      strcpy(gate[i].NAME, "XOR");
+      gate[i].id = XOR;
 
-			gate[i].color[0] = 150;
-			gate[i].color[1] = 90;
-			gate[i].color[2] = 200;
-			gate[i].color[3] = 255;
+      gate[i].width = 100;
+      gate[i].height = 50;
 
-			gate[i].input = 2;
-			gate[i].output = 1;
-		}
+      gate[i].color[0] = 150;
+      gate[i].color[1] = 90;
+      gate[i].color[2] = 200;
+      gate[i].color[3] = 255;
 
-		else if(i == XNOR){
-			strcpy(gate[i].NAME, "XNOR");
-			gate[i].id = XNOR;
+      gate[i].input = 2;
+      gate[i].output = 1;
+    }
 
-			gate[i].width = 100;
-			gate[i].height = 50;
+    else if (i == XNOR) {
+      strcpy(gate[i].NAME, "XNOR");
+      gate[i].id = XNOR;
 
-			gate[i].color[0] = 90;
-			gate[i].color[1] = 200;
-			gate[i].color[2] = 200;
-			gate[i].color[3] = 255;
+      gate[i].width = 100;
+      gate[i].height = 50;
 
-			gate[i].input = 2;
-			gate[i].output = 1;
-		}
-		
-		for(int v = 0; v < MAX_GATES; v++){
-			gate_ins[v] = NULL;
-		}
-	}
+      gate[i].color[0] = 90;
+      gate[i].color[1] = 200;
+      gate[i].color[2] = 200;
+      gate[i].color[3] = 255;
+
+      gate[i].input = 2;
+      gate[i].output = 1;
+    }
+
+    for (int v = 0; v < MAX_GATES; v++) {
+      gate_ins[v] = NULL;
+    }
+  }
 }
 
-/* 
+/*
  * "code readablity
  * isnt a thing"
- * - the person who wrote this 
+ * - the person who wrote this
  */

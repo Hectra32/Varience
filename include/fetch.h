@@ -8,5 +8,6 @@ void spawn_pos(int number, int *w, int *y);
 void fps();
 
 void divide(int length, int section, int pos[]);
+void divide_gap(int length, int section, int pos[]);
 
 #endif
