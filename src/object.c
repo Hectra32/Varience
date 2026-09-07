@@ -6,7 +6,6 @@
 #include "text.h"
 
 #include <SDL2/SDL.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 int local_num = 0;
@@ -32,6 +31,7 @@ void add_object(GATES type) {
   gate_ins[local_num] = obj;
 
   local_num++;
+  add_node(obj);
 }
 
 void object_update(Game *game) {
@@ -116,7 +116,6 @@ void draw_object(Game *game) {
                 (SDL_Color){255, 255, 255, 255});
       break;
     }
-    draw_node(game);
   }
 }
 

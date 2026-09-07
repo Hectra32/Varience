@@ -24,7 +24,7 @@ typedef struct {
   Nodes_Group group;
 } Gate;
 
-typedef struct {
+typedef struct Gate_Ins {
   Gate *gate;
   int number;
   int local_number;

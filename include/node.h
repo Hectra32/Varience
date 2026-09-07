@@ -1,9 +1,10 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <stdlib.h>
+#include <stddef.h>
 
 typedef struct Game Game;
+typedef struct Gate_Ins Gate_Ins;
 
 typedef enum { Input, Output } Node_type;
 
@@ -28,6 +29,7 @@ typedef struct Nodes_Group {
 } Nodes_Group;
 
 void draw_node(Game *game);
+void add_node(Gate_Ins *obj);
 
 extern int rn_gid;
 

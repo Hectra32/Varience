@@ -6,7 +6,7 @@ LIBS = -lSDL2 -lSDL2_ttf
 SRC = $(wildcard src/*.c)
 OBJ = $(SRC:.c=.o)
 
-TARGET = out
+TARGET = varience
 
 
 $(TARGET): $(OBJ)

@@ -1,8 +1,6 @@
 #include "button.h"
 
-#include "defination.h"
 #include "game.h"
-#include "object.h"
 #include <stdio.h>
 
 void button_action(Game *game, int id) {
