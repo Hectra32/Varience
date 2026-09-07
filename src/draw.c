@@ -2,6 +2,7 @@
 #include "game.h"
 #include "node.h"
 #include "object.h"
+#include "panel.h"
 
 #include <SDL2/SDL.h>
 
@@ -60,10 +61,9 @@ void draw(Game *game) {
       DrawFilledCircle(game->renderer, b->x, b->y, b->r);
     }
   }
-
-  panel_draw(game);
   draw_object(game);
   draw_node(game);
+  panel_draw(game);
 
   SDL_RenderPresent(game->renderer);
 }

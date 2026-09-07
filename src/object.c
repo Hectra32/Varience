@@ -82,38 +82,50 @@ void draw_object(Game *game) {
 
     switch (obj->gate->id) {
     case AND:
-      draw_text(game->renderer, game->font, obj->gate->NAME, obj->x, obj->y,
-                (SDL_Color){255, 255, 255, 255});
+      //      draw_text(game->renderer, game->font, obj->gate->NAME, obj->x,
+      //      obj->y,
+      //                (SDL_Color){255, 255, 255, 255});
+
+      draw_text_center(game->renderer, game->font, obj->gate->NAME, obj->x,
+                       obj->y, obj->gate->width, obj->gate->height,
+                       (SDL_Color){255, 255, 255, 255});
       break;
 
     case OR:
-      draw_text(game->renderer, game->font, obj->gate->NAME, obj->x, obj->y,
-                (SDL_Color){255, 255, 255, 255});
+      draw_text_center(game->renderer, game->font, obj->gate->NAME, obj->x,
+                       obj->y, obj->gate->width, obj->gate->height,
+                       (SDL_Color){255, 255, 255, 255});
       break;
 
     case NOT:
-      draw_text(game->renderer, game->font, obj->gate->NAME, obj->x, obj->y,
-                (SDL_Color){255, 255, 255, 255});
+      draw_text_center(game->renderer, game->font, obj->gate->NAME, obj->x,
+                       obj->y, obj->gate->width, obj->gate->height,
+                       (SDL_Color){255, 255, 255, 255});
       break;
 
     case NAND:
-      draw_text(game->renderer, game->font, obj->gate->NAME, obj->x, obj->y,
-                (SDL_Color){255, 255, 255, 255});
+      draw_text_center(game->renderer, game->font, obj->gate->NAME, obj->x,
+                       obj->y, obj->gate->width, obj->gate->height,
+                       (SDL_Color){255, 255, 255, 255});
       break;
 
     case NOR:
-      draw_text(game->renderer, game->font, obj->gate->NAME, obj->x, obj->y,
-                (SDL_Color){255, 255, 255, 255});
+      draw_text_center(game->renderer, game->font, obj->gate->NAME, obj->x,
+                       obj->y, obj->gate->width, obj->gate->height,
+                       (SDL_Color){255, 255, 255, 255});
       break;
 
     case XOR:
-      draw_text(game->renderer, game->font, obj->gate->NAME, obj->x, obj->y,
-                (SDL_Color){255, 255, 255, 255});
+      draw_text_center(game->renderer, game->font, obj->gate->NAME, obj->x,
+                       obj->y, obj->gate->width, obj->gate->height,
+                       (SDL_Color){255, 255, 255, 255});
+
       break;
 
     case XNOR:
-      draw_text(game->renderer, game->font, obj->gate->NAME, obj->x, obj->y,
-                (SDL_Color){255, 255, 255, 255});
+      draw_text_center(game->renderer, game->font, obj->gate->NAME, obj->x,
+                       obj->y, obj->gate->width, obj->gate->height,
+                       (SDL_Color){255, 255, 255, 255});
       break;
     }
   }
