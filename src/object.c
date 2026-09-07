@@ -38,6 +38,7 @@ void object_update(Game *game) {
 
   for (int i = 0; i < local_num; i++) {
     Gate_Ins *obj = gate_ins[i];
+    update_node(game, obj);
 
     if (game->mouse_x > obj->x && game->mouse_x < obj->x + 100 &&
         game->mouse_y > obj->y && game->mouse_y < obj->y + 50 &&

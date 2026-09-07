@@ -26,8 +26,8 @@ void draw_text_center(SDL_Renderer *renderer, TTF_Font *font, const char *text,
   SDL_Rect rect = {x_pos + (width - surface->w) / 2,
                    y_pos + (height - surface->h) / 2, surface->w, surface->h};
 
-  SDL_FreeSurface(surface);
-
   SDL_RenderCopy(renderer, texture, NULL, &rect);
+
   SDL_DestroyTexture(texture);
+  SDL_FreeSurface(surface);
 }

@@ -30,6 +30,7 @@ typedef struct Nodes_Group {
 
 void draw_node(Game *game);
 void add_node(Gate_Ins *obj);
+void update_node(Game *game, Gate_Ins *obj);
 
 extern int rn_gid;
 

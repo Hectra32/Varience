@@ -20,8 +20,6 @@ typedef struct {
 
   int input;
   int output;
-
-  Nodes_Group group;
 } Gate;
 
 typedef struct Gate_Ins {
@@ -29,8 +27,10 @@ typedef struct Gate_Ins {
   int number;
   int local_number;
 
-  unsigned int x;
-  unsigned int y;
+  int x;
+  int y;
+
+  Nodes_Group group;
 } Gate_Ins;
 
 extern Gate gate[7];
