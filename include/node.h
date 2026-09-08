@@ -8,7 +8,8 @@ typedef struct Gate_Ins Gate_Ins;
 
 typedef enum { Input, Output } Node_type;
 
-typedef struct {
+typedef struct Node {
+  int node_id;
   int igid;
   int signal;
   int x;
@@ -33,5 +34,6 @@ void add_node(Gate_Ins *obj);
 void update_node(Game *game, Gate_Ins *obj);
 
 extern int rn_gid;
+extern int node_id;
 
 #endif

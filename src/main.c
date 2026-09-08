@@ -22,6 +22,8 @@ int main() {
   display_size(&weight, &height);
 
   Game game = {0};
+
+  game.selected_node = NULL;
   // Window and Renderer creation
   game.window = SDL_CreateWindow("Varience", 100, 100, weight, height, 0);
 

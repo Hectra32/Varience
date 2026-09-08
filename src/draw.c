@@ -63,6 +63,7 @@ void draw(Game *game) {
   }
   draw_object(game);
   draw_node(game);
+  draw_paths(game);
   panel_draw(game);
 
   SDL_RenderPresent(game->renderer);
