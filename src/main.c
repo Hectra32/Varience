@@ -6,6 +6,7 @@
 #include "draw.h"
 #include "event.h"
 #include "fetch.h"
+#include "font.h"
 #include "game.h"
 #include "object.h"
 #include "panel.h"
@@ -29,9 +30,26 @@ int main() {
 
   game.renderer = SDL_CreateRenderer(game.window, -1, 0);
 
-  game.font = TTF_OpenFont("files/font/NotoSans-Regular.ttf", 24);
+  /*
+    game.font = TTF_OpenFont("files/font/NotoSans-Regular.ttf", 24);
+    if (game.font == NULL) {
+      printf("TTF ERROR: %s\n", TTF_GetError());
+      return 1;
+    }
+  */
+
+  SDL_RWops *rw =
+      SDL_RWFromConstMem(NotoSans_Regular_ttf, NotoSans_Regular_ttf_len);
+
+  if (rw == NULL) {
+    fprintf(stderr, "Failed to create font RWops: %s\n", SDL_GetError());
+    return 1;
+  }
+
+  game.font = TTF_OpenFontRW(rw, 1, 24);
+
   if (game.font == NULL) {
-    printf("TTF ERROR: %s\n", TTF_GetError());
+    fprintf(stderr, "Failed to load embedded font: %s\n", TTF_GetError());
     return 1;
   }
 
