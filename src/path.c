@@ -63,5 +63,7 @@ void draw_paths(Game *game) {
     Node *to = game->wires[i].to;
 
     draw_path(game, from->x, from->y, to->x, to->y);
+
+    from->signal = to->signal; // Change The Signal Of Next Node
   }
 }

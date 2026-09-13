@@ -57,16 +57,71 @@ void object_update(Game *game) {
   }
 }
 
+// Thanks For This Function
 void object_delete(Game *game) {
-  for (int i = 0; i < local_num; i++) {
+  if (game->button[1].type != DELETE_MODE || game->button[1].type_mode != 1 ||
+      game->selected == NULL) {
+    return;
+  }
 
-    Gate_Ins *obj = gate_ins[i];
-    Button *b = &game->button[i];
+  Gate_Ins *obj = game->selected;
 
-    if (b->type == DELETE_MODE && b->type_mode == 1 && game->selected == obj) {
-      free(obj);
+  /* Remove wires connected to this object's nodes */
+  for (int i = 0; i < game->wire_count;) {
+    int connected = 0;
+
+    for (size_t n = 0; n < obj->group.node_count; n++) {
+      Node *node = &obj->group.node[n];
+
+      if (game->wires[i].from == node || game->wires[i].to == node) {
+        connected = 1;
+        break;
+      }
+    }
+
+    if (connected) {
+      /* Move the last wire into this slot */
+      game->wires[i] = game->wires[game->wire_count - 1];
+
+      game->wire_count--;
+      continue;
+    }
+
+    i++;
+  }
+
+  /* Clear selected_node if it belongs to this object */
+  if (game->selected_node != NULL) {
+    for (size_t n = 0; n < obj->group.node_count; n++) {
+      if (game->selected_node == &obj->group.node[n]) {
+        game->selected_node = NULL;
+        break;
+      }
     }
   }
+
+  /* Free the object's nodes */
+  free(obj->group.node);
+
+  /* Find object in gate_ins[] */
+  for (int i = 0; i < local_num; i++) {
+    if (gate_ins[i] == obj) {
+
+      /* Shift objects after it left */
+      for (int j = i; j < local_num - 1; j++) {
+        gate_ins[j] = gate_ins[j + 1];
+      }
+
+      gate_ins[local_num - 1] = NULL;
+      local_num--;
+
+      break;
+    }
+  }
+
+  /* Clear selection */
+  game->selected = NULL;
+  game->dragging = 0;
 }
 
 void draw_object(Game *game) {

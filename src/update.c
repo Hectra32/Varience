@@ -43,4 +43,5 @@ void update(Game *game) {
 
   panel_update(game);
   object_update(game);
+  object_delete(game);
 }

@@ -9,6 +9,7 @@ typedef struct Node Node;
 typedef struct {
   Node *from;
   Node *to;
+  int signal;
 } Wire;
 
 int find_path(int x1, int y1, int x2, int y2, int *out_points);
