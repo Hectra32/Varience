@@ -29,7 +29,7 @@ int main() {
 
   game.renderer = SDL_CreateRenderer(game.window, -1, 0);
 
-  game.font = TTF_OpenFont("files/font/Inter.ttf", 24);
+  game.font = TTF_OpenFont("files/font/NotoSans-Regular.ttf", 24);
   if (game.font == NULL) {
     printf("TTF ERROR: %s\n", TTF_GetError());
     return 1;

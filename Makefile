@@ -1,3 +1,6 @@
+# Make File
+# Varience
+
 CC = gcc
 
 CFLAGS = -Iinclude -g -D_REENTRANT
@@ -6,7 +9,7 @@ LIBS = -lSDL2 -lSDL2_ttf
 SRC = $(wildcard src/*.c)
 OBJ = $(SRC:.c=.o)
 
-TARGET = varience
+TARGET = Varience
 
 
 $(TARGET): $(OBJ)
