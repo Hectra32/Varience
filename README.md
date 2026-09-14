@@ -8,6 +8,7 @@ A simple logic simulator
 git clone repo 
 cd Varience
 make
+````
 
 ### Required
 - SDL2
