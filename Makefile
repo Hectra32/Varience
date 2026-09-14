@@ -4,7 +4,7 @@
 CC = gcc
 
 CFLAGS = -Iinclude -g -D_REENTRANT
-LIBS = -lSDL2 -lSDL2_ttf
+LIBS = -lSDL2 -lSDL2_ttf -lSDL2_image
 
 FONT_SOURCE = src/font.c
 FONT_SCRIPT = files/font/build_font.sh

@@ -16,3 +16,15 @@ void button_action(Game *game, int id) {
     break;
   }
 }
+
+void draw_button_icon(Game *game, Button *button) {
+  if (button->icon == NULL)
+    return;
+
+  int size = button->r + 5;
+
+  SDL_Rect dst = {button->x - size / 2, button->y - size / 2, size, size};
+
+  SDL_RenderCopy(game->renderer, button->icon, NULL, &dst);
+}
+// new button icon

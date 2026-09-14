@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <stdio.h>
 
 #include "button.h"
@@ -16,6 +17,10 @@ int main() {
   SDL_Init(SDL_INIT_EVERYTHING);
   if (TTF_Init() == -1) {
     printf("TTF_Init failed: %s\n", TTF_GetError());
+    return 1;
+  }
+  if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+    fprintf(stderr, "IMG_Init failed: %s\n", IMG_GetError());
     return 1;
   }
 
@@ -64,11 +69,14 @@ int main() {
   game.button[0].action = panel_toggle;
   game.button[0].type = PANEL;
   game.button[0].type_mode = 0; // unused for panel toggle option ____
+  game.button[0].icon = IMG_LoadTexture(game.renderer, "files/images/menu.png");
 
   game.button[1] = (Button){2, 60, 15, 10, 0};
   game.button[1].action = NULL;
   game.button[1].type = DELETE_MODE;
   game.button[1].type_mode = 0;
+  game.button[1].icon =
+      IMG_LoadTexture(game.renderer, "files/images/delete.png");
 
   // Panel setup
   panel_init(&game);

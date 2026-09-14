@@ -1,4 +1,5 @@
 #include "draw.h"
+#include "button.h"
 #include "game.h"
 #include "node.h"
 #include "object.h"
@@ -54,13 +55,19 @@ void draw(Game *game) {
       if (b->type == DELETE_MODE) {
         if (b->type_mode == 0) {
           SDL_SetRenderDrawColor(game->renderer, 100, 100, 100, 255);
-        } else if (b->type_mode == 1) {
+        } else {
           SDL_SetRenderDrawColor(game->renderer, 200, 100, 100, 255);
         }
       }
+
       DrawFilledCircle(game->renderer, b->x, b->y, b->r);
     }
+
+    if (b->icon != NULL) {
+      draw_button_icon(game, b);
+    }
   }
+
   draw_object(game);
   draw_node(game);
   draw_paths(game);

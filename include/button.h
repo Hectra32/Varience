@@ -1,6 +1,8 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include <SDL2/SDL.h>
+
 typedef enum { PANEL, DELETE_MODE, SAVE, LOAD, SETTINGS } Button_type;
 
 typedef struct Game Game;
@@ -18,10 +20,13 @@ typedef struct {
 
   void (*action)(Game *game);
 
+  SDL_Texture *icon;
+
   Button_type type;
   int type_mode;
 } Button;
 
 // void button_action(Game *game, int id);
+void draw_button_icon(Game *game, Button *button);
 
 #endif
